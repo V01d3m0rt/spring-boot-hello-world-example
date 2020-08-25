@@ -1,0 +1,5 @@
+com/javatpoint/controller/HelloWorldController.class
+com/michaelcgood/dao/SystemRepository.class
+com/javatpoint/SpringBootHelloWorldExampleApplication.class
+com/michaelcgood/model/System.class
+com/javatpoint/config/BatchConfiguration.class
