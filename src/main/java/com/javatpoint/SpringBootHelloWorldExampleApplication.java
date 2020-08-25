@@ -3,7 +3,7 @@ package com.javatpoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
-import org.springframework.batch.core.JobParameters;
+import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.JobParametersInvalidException;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
@@ -55,8 +55,14 @@ public class SpringBootHelloWorldExampleApplication implements CommandLineRunner
 	}
 
 	public void startJob() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
-		 jobLauncher.run(processJob1,new JobParameters());
-		 jobLauncher.run(processJob2, new JobParameters());
+		 jobLauncher.run(processJob1,new JobParametersBuilder()
+		            .addLong("timestamp",
+		                    System.currentTimeMillis())
+		            .toJobParameters());
+		 jobLauncher.run(processJob2, new JobParametersBuilder()
+		            .addLong("timestamp",
+		                    System.currentTimeMillis())
+		            .toJobParameters());
 		
 	}
 

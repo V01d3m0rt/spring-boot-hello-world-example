@@ -6,7 +6,9 @@ import javax.sql.DataSource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.StepExecution;
 import org.springframework.batch.core.configuration.annotation.DefaultBatchConfigurer;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
@@ -14,6 +16,7 @@ import org.springframework.batch.core.configuration.annotation.StepBuilderFactor
 import org.springframework.batch.core.job.builder.FlowBuilder;
 import org.springframework.batch.core.job.flow.Flow;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
+import org.springframework.batch.core.scope.context.StepSynchronizationManager;
 import org.springframework.batch.core.step.tasklet.TaskletStep;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 
+import com.javatpoint.batch.listener.SimpleJobListener;
 import com.michaelcgood.dao.SystemRepository;
 
 @Configuration
@@ -42,10 +46,10 @@ public class BatchConfiguration extends DefaultBatchConfigurer {
 	@Autowired
 	SystemRepository systemRepository;
 
-    @Override
-    public void setDataSource(DataSource dataSource) {
-        //This BatchConfigurer ignores any DataSource
-    }
+//    @Override
+//    public void setDataSource(DataSource dataSource) {
+//        //This BatchConfigurer ignores any DataSource
+//    }
 
 	private TaskletStep taskletStep(String step) {
 		return stepBuilderFactory.get(step).tasklet((contribution, chunkContext) -> {
@@ -80,7 +84,7 @@ public class BatchConfiguration extends DefaultBatchConfigurer {
 		Flow slaveFlow = (Flow) new FlowBuilder("slaveFlow").split(new SimpleAsyncTaskExecutor())
 				.add(flowJob1, flowJob2, flowJob3).build();
 
-		return (jobBuilderFactory.get("parallelFlowJob1").preventRestart().incrementer(new RunIdIncrementer())
+		return (jobBuilderFactory.get("parallelFlowJob1").incrementer(new RunIdIncrementer()).listener(new SimpleJobListener())
 				.start(masterFlow).next(slaveFlow).build()).build();
 
 	}
@@ -97,7 +101,7 @@ public class BatchConfiguration extends DefaultBatchConfigurer {
 		Flow slaveFlow = (Flow) new FlowBuilder("slaveFlow").split(new SimpleAsyncTaskExecutor())
 				.add(flowJob1, flowJob2, flowJob3).build();
 
-		return (jobBuilderFactory.get("parallelFlowJob2").preventRestart().incrementer(new RunIdIncrementer())
+		return (jobBuilderFactory.get("parallelFlowJob2").preventRestart().incrementer(new RunIdIncrementer()).listener(new SimpleJobListener())
 				.start(masterFlow).next(slaveFlow).build()).build();
 
 	}
