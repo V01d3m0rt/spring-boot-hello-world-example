@@ -13,6 +13,6 @@ public class SimpleJobListener implements JobExecutionListener {
 	@Override
 	public void afterJob(JobExecution jobExecution) {
 		// Setting the exception in batch EXIT MESSAGE
-		jobExecution.setExitStatus(new ExitStatus("ERROR", "Exception in JOB"));
+		//jobExecution.setExitStatus(new ExitStatus("ERROR", "Exception in JOB"));
 	}
 }

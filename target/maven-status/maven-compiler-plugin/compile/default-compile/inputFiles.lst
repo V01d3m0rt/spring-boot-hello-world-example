@@ -1,6 +1,9 @@
-/home/nikhil/eclipse-workspace/spring-boot-hello-world-example/src/main/java/com/michaelcgood/dao/SystemRepository.java
+/home/nikhil/eclipse-workspace/spring-boot-hello-world-example/src/main/java/com/javatpoint/batch/processor/SlaveProcessor.java
 /home/nikhil/eclipse-workspace/spring-boot-hello-world-example/src/main/java/com/javatpoint/config/BatchConfiguration.java
+/home/nikhil/eclipse-workspace/spring-boot-hello-world-example/src/main/java/com/michaelcgood/model/ComputerSystem.java
+/home/nikhil/eclipse-workspace/spring-boot-hello-world-example/src/main/java/com/michaelcgood/dao/ComputerSystemRepository.java
+/home/nikhil/eclipse-workspace/spring-boot-hello-world-example/src/main/java/com/javatpoint/batch/reader/SlaveReader.java
 /home/nikhil/eclipse-workspace/spring-boot-hello-world-example/src/main/java/com/javatpoint/SpringBootHelloWorldExampleApplication.java
+/home/nikhil/eclipse-workspace/spring-boot-hello-world-example/src/main/java/com/javatpoint/batch/writer/SlaveWriter.java
 /home/nikhil/eclipse-workspace/spring-boot-hello-world-example/src/main/java/com/javatpoint/batch/listener/SimpleJobListener.java
 /home/nikhil/eclipse-workspace/spring-boot-hello-world-example/src/main/java/com/javatpoint/controller/HelloWorldController.java
-/home/nikhil/eclipse-workspace/spring-boot-hello-world-example/src/main/java/com/michaelcgood/model/System.java

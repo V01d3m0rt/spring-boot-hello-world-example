@@ -1,6 +1,9 @@
-com/michaelcgood/model/System.class
+com/javatpoint/batch/reader/SlaveReader.class
+com/javatpoint/batch/processor/SlaveProcessor.class
+com/michaelcgood/model/ComputerSystem.class
+com/javatpoint/batch/writer/SlaveWriter.class
+com/michaelcgood/dao/ComputerSystemRepository.class
 com/javatpoint/batch/listener/SimpleJobListener.class
 com/javatpoint/controller/HelloWorldController.class
-com/michaelcgood/dao/SystemRepository.class
 com/javatpoint/SpringBootHelloWorldExampleApplication.class
 com/javatpoint/config/BatchConfiguration.class
