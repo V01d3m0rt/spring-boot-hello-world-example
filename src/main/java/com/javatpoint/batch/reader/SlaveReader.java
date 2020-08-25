@@ -10,16 +10,10 @@ import com.michaelcgood.model.ComputerSystem;
 
 public class SlaveReader implements ItemReader<ComputerSystem> {
 
-	private StepExecution stepExecution;
 	private Queue<ComputerSystem> queue;
 	
 	public SlaveReader(Queue<ComputerSystem> queue) {
 		this.queue = queue;
-	}
-
-	@BeforeStep
-	public void saveStepExecution(StepExecution stepExec) {
-		stepExecution = stepExec;
 	}
 
 	@Override

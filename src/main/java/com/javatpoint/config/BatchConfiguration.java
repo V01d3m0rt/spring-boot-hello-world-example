@@ -54,7 +54,7 @@ public class BatchConfiguration extends DefaultBatchConfigurer {
 //    }
 
 	private TaskletStep taskletStep(Queue<ComputerSystem> queue) {
-		return stepBuilderFactory.get("orderStep1").<ComputerSystem, ComputerSystem>chunk(2)
+		return stepBuilderFactory.get("orderStep1").<ComputerSystem, ComputerSystem>chunk(100)
 				.reader(new SlaveReader(queue)).processor(new SlaveProcessor()).writer(new SlaveWriter()).build();
 	}
 
@@ -62,6 +62,7 @@ public class BatchConfiguration extends DefaultBatchConfigurer {
 	public Job parallelStepsJob1() {
 
 		Iterable<ComputerSystem> systemIterable = systemRepository.findAll();
+		
 		int size = ((Collection<?>) systemIterable).size();
 
 		int threshHold = 100;	//must be equal or greater then 100
